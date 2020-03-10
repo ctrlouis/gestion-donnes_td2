@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>#{title}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    block css
+        include stylesheets.html.pug
+
+    block fonts
+
+</head>
+
+<body>
+
+    <header>
+    block header
+        include navbar.html.pug
+    </header>
+
+    <main>
+    block main
+    </main>
+
+    <footer>
+    block footer
+    </footer>
+
+</body>
+
+<!-- load script here -->
+include scripts.html.pug
+
+</html>

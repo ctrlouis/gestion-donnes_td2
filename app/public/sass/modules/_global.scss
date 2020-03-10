@@ -1,0 +1,10 @@
+img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, video {
+	max-width: 100%;
+}
+
+img {
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    height: auto;
+    width: auto;
+}

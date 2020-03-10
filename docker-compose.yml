@@ -1,0 +1,56 @@
+version:             '3'
+
+services:
+
+    mongo.localisation:
+        image: mongo
+        environment:
+            - MONGO_INITDB_DATABASE=localisation
+            - MONGO_INITDB_USERNAME=root
+            - MONGO_INITDB_PASSWORD=rootpassword
+        volumes:
+            - ./docker/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+            - ./docker/mongo-volume:/data/db
+        ports:
+            - '27017-27019:27017-27019'
+
+    mongo-express:
+        image: mongo-express
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: password
+            ME_CONFIG_MONGODB_SERVER: 'mongo.localisation'
+        links:
+            - mongo.localisation
+
+    api.localisation:
+        image: node
+        environment:
+            - NODE_ENV=dev
+            - VHOST_HOSTNAME=api.localisation.local
+        ports:
+            - "3000:8080"
+        volumes:
+            - ./api_localisation:/app/api_localisation
+        working_dir: /app/api_localisation
+        command: bash -c "npm i && npm start"
+        links:
+            - mongo.localisation
+
+    app.localisation:
+        image: node
+        environment:
+            - NODE_ENV=dev
+            - VHOST_HOSTNAME=api.localisation.local
+        ports:
+            - "80:8080"
+        volumes:
+            - ./app_localisation:/app/app_localisation
+        working_dir: /app/app_localisation
+        command: bash -c "npm i && npm start"
+        links:
+            - mongo.localisation
+            - api.localisation

@@ -1,0 +1,29 @@
+@import 'modules/global.scss';
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+header {
+    flex-shrink: 0;
+}
+
+main {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
