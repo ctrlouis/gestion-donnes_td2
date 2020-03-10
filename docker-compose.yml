@@ -36,7 +36,7 @@ services:
         volumes:
             - ./api:/app/api_localisation
         working_dir: /app/api_localisation
-        command: bash -c "npm i && npm start"
+        command: bash -c "npm install && npm start"
         links:
             - mongo.localisation
 
@@ -50,7 +50,7 @@ services:
         volumes:
             - ./app:/app/app_localisation
         working_dir: /app/app_localisation
-        command: bash -c "npm i && npm start"
+        command: bash -c "npm install && npm start"
         links:
             - mongo.localisation
             - api.localisation
