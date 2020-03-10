@@ -4,11 +4,11 @@
 import mongoose from 'mongoose';
 
 
-export class ConnectionFactory {
+class ConnectionFactory {
 
     static connect() {
         //Set up default mongoose connection
-        const mongoDB = 'mongodb://mongo.wax:27017/wax';
+        const mongoDB = 'mongodb://mongo.localisation:27017/localisation';
         mongoose.connect(mongoDB, {
             useNewUrlParser: true
         });
@@ -21,3 +21,5 @@ export class ConnectionFactory {
     }
 
 }
+
+export default ConnectionFactory;

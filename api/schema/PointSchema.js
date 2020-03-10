@@ -1,0 +1,20 @@
+"use strict";
+
+import mongoose from 'mongoose';
+
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
+
+
+const collection = 'points_interests';
+
+export const PointSchema = new Schema({
+    name: { type: String, required: true },
+    details: { type: String, default: null },
+    position: {
+        latitude: { type: Number, required: true },
+        longitude: { type: Number, required: true }
+    }
+});
+
+export const PointModel = mongoose.model(collection, PointSchema);

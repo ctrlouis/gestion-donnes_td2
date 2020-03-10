@@ -15,10 +15,12 @@ import logger from 'morgan';
  */
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import createError from 'http-errors';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import indexRouter from './routes/index.js';
+import pointRouter from './routes/pointRouter.js';
 
 
 const expressPort = 8080;
@@ -41,6 +43,14 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 /**
+ * perso middleware
+ */
+function redirectUnmatched(req, res , next) {
+    return next(createError(404, 'Not found', { expose: false }));
+    next();
+}
+
+/**
  * import generate
  * by express-generator
  */
@@ -52,6 +62,8 @@ app.options('*', cors());
 
 // routes
 app.use('/', indexRouter);
+app.use('/points', pointRouter);
+app.use(redirectUnmatched);
 
 app.listen(expressPort, () => {
     console.log("Server up and running at localhost: " + expressPort);
