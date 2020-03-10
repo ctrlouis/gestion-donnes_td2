@@ -3,7 +3,6 @@ img, table, td, blockquote, code, pre, textarea, input, iframe, object, embed, v
 }
 
 img {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   height: auto;
   width: auto;
 }
@@ -34,6 +33,11 @@ main {
 
 footer {
   flex-shrink: 0;
+}
+
+.map {
+  width: 100%;
+  height: 50vh;
 }
 
 /*# sourceMappingURL=main.css.map */
