@@ -34,7 +34,7 @@ services:
         ports:
             - "3000:8080"
         volumes:
-            - ./api_localisation:/app/api_localisation
+            - ./api:/app/api_localisation
         working_dir: /app/api_localisation
         command: bash -c "npm i && npm start"
         links:
@@ -48,7 +48,7 @@ services:
         ports:
             - "80:8080"
         volumes:
-            - ./app_localisation:/app/app_localisation
+            - ./app:/app/app_localisation
         working_dir: /app/app_localisation
         command: bash -c "npm i && npm start"
         links:
