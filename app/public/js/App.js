@@ -33,9 +33,11 @@ const Mapp = Vue.component('mapp', {
             this.tileLayer.addTo(this.map);
         },
         initMarkers() {
-            let marker;
-            this.pins.forEach((pin) => {
+            let marker, popup;
+            this.pins.forEach((pin) => {                
                 marker = L.marker([pin.position.latitude, pin.position.longitude]).addTo(this.map);
+                popup = '<header>' + pin.name + '</header> <main>' + pin.details + '</main>';
+                marker.bindPopup(popup);
                 this.markers.push(marker);
             });
         },
@@ -68,12 +70,7 @@ const App = new Vue({
             latitude: 48.6880756,
             longitude: 6.1384176
         },
-        pointsInterests: [{
-            position: {
-                latitude: 48.6880756,
-                longitude: 6.1384176
-            }
-        }],
+        pointsInterests: [],
 
         api: {
             localisation: {
