@@ -34,7 +34,7 @@ const Mapp = Vue.component('mapp', {
         },
         initMarkers() {
             let marker, popup;
-            this.pins.forEach((pin) => {                
+            this.pins.forEach((pin) => {
                 marker = L.marker([pin.position.latitude, pin.position.longitude]).addTo(this.map);
                 popup = '<header>' + pin.name + '</header> <main>' + pin.details + '</main>';
                 marker.bindPopup(popup);
@@ -45,6 +45,9 @@ const Mapp = Vue.component('mapp', {
             this.markers.forEach(marker => this.map.removeLayer(marker));
             while (this.markers.length) this.markers.shift();
             this.initMarkers();
+        },
+        randomColor() {
+            return '#' + Math.floor(Math.random()*16777215).toString(16);
         }
     },
 
