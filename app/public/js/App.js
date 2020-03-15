@@ -40,19 +40,9 @@ const Mapp = Vue.component('mapp', {
             this.tileLayer.addTo(this.map);
         },
         initMarkers() {
-
-            // L.control.layers(null, this.overlayMaps).addTo(this.map);
-
-            // let marker, popup;
-            // this.pins.forEach((pin) => {
-            //     marker = L.marker([pin.position.latitude, pin.position.longitude]).addTo(this.map);
-            //     popup = '<header>' + pin.name + '</header><hr><main>' + pin.details + '</main>';
-            //     marker.bindPopup(popup);
-            //     this.markers.push(marker);
-            // });
-
             let marker, popup;
             let group = [];
+
             this.pins.forEach((pin) => {
                 marker = L.marker([pin.position.latitude, pin.position.longitude]);
                 popup = `
@@ -64,12 +54,7 @@ const Mapp = Vue.component('mapp', {
             });
             const school = L.layerGroup(group).addTo(this.map);
 
-            var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.');
-
-            var cities = L.layerGroup([littleton]).addTo(this.map);
-
             this.overlayMaps = {
-                "Cities": cities,
                 "School": school
             };
             L.control.layers({}, this.overlayMaps).addTo(this.map);
