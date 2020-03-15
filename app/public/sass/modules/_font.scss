@@ -1,0 +1,19 @@
+// roboto
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+// josephin sans
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+// nunito
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+$defaultFont: 'Roboto', sans-serif;
+$titleFont: 'Josefin Sans', 'Nunito', 'Roboto', sans-serif;
+
+body {
+    font-family: $defaultFont;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: $titleFont;
+}

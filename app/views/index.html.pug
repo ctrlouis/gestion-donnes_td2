@@ -1,7 +1,9 @@
 extends fabric/base.html.pug
 
 block main
-    <h1>TD2</h1>
+    <div id="title">
+        <h1>Gestion de données: TD2</h1>
+    </div>
 
     <div id="app">
         <Mapp v-if="pointsInterests" :initial-pos="initialPosition" :pins="pointsInterests"></Mapp>
