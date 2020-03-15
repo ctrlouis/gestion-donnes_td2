@@ -4,5 +4,6 @@ block main
     <h1>TD2</h1>
 
     <div id="app">
-        <Mapp :initial-pos="initialPosition" :pins="pointsInterests"></Mapp>
+        <Mapp v-if="pointsInterests" :initial-pos="initialPosition" :pins="pointsInterests"></Mapp>
+        <p v-else>Loading data</p>
     </div>

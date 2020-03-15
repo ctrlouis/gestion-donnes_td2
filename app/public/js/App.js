@@ -16,15 +16,22 @@ const Mapp = Vue.component('mapp', {
             titleLayer: null,
             layers: [],
             mapId: 'mymap',
-            markers: []
+            markers: [],
+            layers: null,
+            overlayMaps: {}
         }
     },
 
     methods: {
         initMap() {
             const position = [this.initialPos.latitude, this.initialPos.longitude];
-            const zoom = 12;
-            this.map = L.map(this.mapId).setView(position, zoom);
+            const zoom = 14;
+
+            this.map = L.map(this.mapId, {
+                center: position,
+                zoom: zoom
+            });
+            
             this.tileLayer = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
                     maxZoom: 18,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
@@ -33,27 +40,42 @@ const Mapp = Vue.component('mapp', {
             this.tileLayer.addTo(this.map);
         },
         initMarkers() {
+
+            // L.control.layers(null, this.overlayMaps).addTo(this.map);
+
+            // let marker, popup;
+            // this.pins.forEach((pin) => {
+            //     marker = L.marker([pin.position.latitude, pin.position.longitude]).addTo(this.map);
+            //     popup = '<header>' + pin.name + '</header><hr><main>' + pin.details + '</main>';
+            //     marker.bindPopup(popup);
+            //     this.markers.push(marker);
+            // });
+
             let marker, popup;
+            let group = [];
             this.pins.forEach((pin) => {
-                marker = L.marker([pin.position.latitude, pin.position.longitude]).addTo(this.map);
-                popup = '<header>' + pin.name + '</header> <main>' + pin.details + '</main>';
+                marker = L.marker([pin.position.latitude, pin.position.longitude]);
+                popup = `
+                    <header>${pin.name}</header>
+                    <hr>
+                    <main>${pin.details}</main>`;
                 marker.bindPopup(popup);
-                this.markers.push(marker);
+                group.push(marker);
             });
-        },
-        refreshMarkers() {
-            this.markers.forEach(marker => this.map.removeLayer(marker));
-            while (this.markers.length) this.markers.shift();
-            this.initMarkers();
+            const school = L.layerGroup(group).addTo(this.map);
+
+            var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.');
+
+            var cities = L.layerGroup([littleton]).addTo(this.map);
+
+            this.overlayMaps = {
+                "Cities": cities,
+                "School": school
+            };
+            L.control.layers({}, this.overlayMaps).addTo(this.map);
         },
         randomColor() {
             return '#' + Math.floor(Math.random()*16777215).toString(16);
-        }
-    },
-
-    watch: {
-        pins: function(newPins) {            
-            this.refreshMarkers();
         }
     },
 
@@ -70,10 +92,10 @@ const App = new Vue({
 
     data: {
         initialPosition: {
-            latitude: 48.6880756,
-            longitude: 6.1384176
+            latitude: 48.693009,
+            longitude: 6.1815483
         },
-        pointsInterests: [],
+        pointsInterests: null,
 
         api: {
             localisation: {
@@ -86,9 +108,9 @@ const App = new Vue({
         fetchPoints() {
             const url = this.api.localisation.url + '/points';
             axios.get(url)
-            .then((results) => {
-                this.setPoints(results.data);
-                
+            .then((res) => {
+                // this.setPoints(res.data);
+                this.pointsInterests = res.data;
             }).catch((err) => {
                 console.error(err);
             });

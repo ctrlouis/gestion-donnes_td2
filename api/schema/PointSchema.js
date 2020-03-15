@@ -15,7 +15,7 @@ export const PointSchema = new Schema({
         latitude: { type: Number, required: true },
         longitude: { type: Number, required: true }
     },
-    categorie: { type: String }
+    categorie: { type: String, default: null }
 });
 
 export const PointModel = mongoose.model(collection, PointSchema);
