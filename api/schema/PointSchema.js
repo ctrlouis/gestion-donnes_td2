@@ -11,6 +11,8 @@ const collection = 'points_interests';
 export const PointSchema = new Schema({
     name: { type: String, required: true },
     details: { type: String, default: null },
+    adresse: { type: String, default: null },
+    url: { tpye: String, default: null },
     position: {
         latitude: { type: Number, required: true },
         longitude: { type: Number, required: true }
