@@ -41,7 +41,7 @@ const Mapp = Vue.component('mapp', {
         },
         initMarkers() {
             let marker, popup;
-            let group = [];
+            let bikes = [], schools = [], others = [];
 
             this.pins.forEach((pin) => {
                 marker = L.marker([pin.position.latitude, pin.position.longitude]);
@@ -50,12 +50,28 @@ const Mapp = Vue.component('mapp', {
                     <hr>
                     <main>${pin.details}</main>`;
                 marker.bindPopup(popup);
-                group.push(marker);
+                
+                switch (pin.categorie) {
+                    case "velostan":
+                        bikes.push(marker);
+                        break;
+                    case "institut":
+                        schools.push(marker);
+                        break;
+                
+                    default:
+                        others.push(marker);
+                        break;
+                }
             });
-            const school = L.layerGroup(group).addTo(this.map);
+            const schoolLayer = L.layerGroup(schools).addTo(this.map);
+            const bikesLayer = L.layerGroup(bikes).addTo(this.map);
+            const othersLayer = L.layerGroup(others).addTo(this.map);
 
             this.overlayMaps = {
-                "School": school
+                "Ecoles": schoolLayer,
+                "Velo Stan": bikesLayer,
+                "Autres": othersLayer
             };
             L.control.layers({}, this.overlayMaps).addTo(this.map);
         },
