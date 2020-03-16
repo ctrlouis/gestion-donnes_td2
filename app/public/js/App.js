@@ -43,6 +43,7 @@ const Mapp = Vue.component('mapp', {
             let bikes = [],
                 monuments = [],
                 schools = [],
+                parkings = [],
                 others = [];
 
             this.pins.forEach((pin) => {
@@ -58,6 +59,9 @@ const Mapp = Vue.component('mapp', {
                     case "monument":
                         monuments.push(marker);
                         break;
+                    case "parking":
+                        parkings.push(marker);
+                        break;
 
                     default:
                         others.push(marker);
@@ -68,12 +72,14 @@ const Mapp = Vue.component('mapp', {
             const schoolsLayer = L.layerGroup(schools).addTo(this.map);
             const bikesLayer = L.layerGroup(bikes).addTo(this.map);
             const monumentsLayer = L.layerGroup(monuments).addTo(this.map);
+            const parkingsLayer = L.layerGroup(parkings).addTo(this.map);
             const othersLayer = L.layerGroup(others).addTo(this.map);
 
             this.overlayMaps = {
                 "Ecoles": schoolsLayer,
                 "Velo Stan": bikesLayer,
                 "Monuments": monumentsLayer,
+                "Parkings": parkingsLayer,
                 "Autres": othersLayer
             };
             L.control.layers({}, this.overlayMaps).addTo(this.map);
