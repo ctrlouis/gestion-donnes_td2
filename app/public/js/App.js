@@ -31,52 +31,83 @@ const Mapp = Vue.component('mapp', {
                 center: position,
                 zoom: zoom
             });
-            
+
             this.tileLayer = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
-                    maxZoom: 18,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
-                }
-            );
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
+            });
             this.tileLayer.addTo(this.map);
         },
         initMarkers() {
             let marker, popup;
-            let bikes = [], schools = [], others = [];
+            let bikes = [],
+                monuments = [],
+                schools = [],
+                others = [];
 
             this.pins.forEach((pin) => {
-                marker = L.marker([pin.position.latitude, pin.position.longitude]);
-                popup = `
-                    <header>${pin.name}</header>
-                    <hr>
-                    <main>${pin.details}</main>`;
-                marker.bindPopup(popup);
-                
+                marker = L.marker([pin.position.latitude, pin.position.longitude]).bindPopup(this.generatePopup(pin));
+
                 switch (pin.categorie) {
                     case "velostan":
                         bikes.push(marker);
                         break;
-                    case "institut":
+                    case "ecole":
                         schools.push(marker);
                         break;
-                
+                    case "monument":
+                        monuments.push(marker);
+                        break;
+
                     default:
                         others.push(marker);
                         break;
                 }
             });
-            const schoolLayer = L.layerGroup(schools).addTo(this.map);
+
+            const schoolsLayer = L.layerGroup(schools).addTo(this.map);
             const bikesLayer = L.layerGroup(bikes).addTo(this.map);
+            const monumentsLayer = L.layerGroup(monuments).addTo(this.map);
             const othersLayer = L.layerGroup(others).addTo(this.map);
 
             this.overlayMaps = {
-                "Ecoles": schoolLayer,
+                "Ecoles": schoolsLayer,
                 "Velo Stan": bikesLayer,
+                "Monuments": monumentsLayer,
                 "Autres": othersLayer
             };
             L.control.layers({}, this.overlayMaps).addTo(this.map);
         },
+        generatePopup(data) {
+            let popup = `
+            <header>${data.name}</header>
+            <hr>
+            <main><p>${data.details}</p>`;
+
+            if (data.adresse) {
+                popup += `
+                <p class="adresse">${data.adresse}</p>
+                `;
+            }
+
+            if (data.infos.hours.start) {
+                popup += `
+                <p>Horaire: ${data.infos.hours.start} - ${data.infos.hours.end}</p>
+                `;
+            }
+
+            if (data.infos.url) {
+                popup += `
+                <a href="${data.infos.url}" target="_blank">Lien vers le site</a>
+                `;
+            }
+
+            popup += `</main>`;
+
+            return popup;
+        },
         randomColor() {
-            return '#' + Math.floor(Math.random()*16777215).toString(16);
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
         }
     },
 
@@ -89,7 +120,9 @@ const Mapp = Vue.component('mapp', {
 const App = new Vue({
     el: '#app',
 
-    components: { Mapp },
+    components: {
+        Mapp
+    },
 
     data: {
         initialPosition: {
@@ -109,12 +142,12 @@ const App = new Vue({
         fetchPoints() {
             const url = this.api.localisation.url + '/points';
             axios.get(url)
-            .then((res) => {
-                // this.setPoints(res.data);
-                this.pointsInterests = res.data;
-            }).catch((err) => {
-                console.error(err);
-            });
+                .then((res) => {
+                    // this.setPoints(res.data);
+                    this.pointsInterests = res.data;
+                }).catch((err) => {
+                    console.error(err);
+                });
         },
         setPoints(points) {
             points.forEach(point => this.pointsInterests.push(point));
