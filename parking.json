@@ -1,0 +1,159 @@
+{
+    "_id": ObjectID(),
+    "name": "Parking Indigo Nancy Carnot",
+    "adresse": "2 Place Carnot",
+    "infos": {
+        "url": "https://fr.parkindigo.com/parking/nancy-54000/carnot-54000200?utm_source=google&utm_medium=my_business&utm_campaign=fiche_my_business&utm_term=540002&utm_content=FR"
+    },
+    "position": {
+        "latitude": 48.6931773,
+        "longitude": 6.1761269
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Indigo Nancy Saint-Dizier Saint-Nicolas",
+    "adresse": "1-5 Rue du Dr Schmitt",
+    "infos": {
+        "url": "https://fr.parkindigo.com/parking/nancy-54000/saint-dizier-saint-nicolas-54000700?utm_source=google&utm_medium=my_business&utm_campaign=fiche_my_business&utm_term=540007&utm_content=FR"
+    },
+    "position": {
+        "latitude": 48.6916193,
+        "longitude": 6.1789827
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Dom Calmet",
+    "adresse": "Rue Dom Calmet",
+    "position": {
+        "latitude": 48.6893435,
+        "longitude": 6.1817813
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Indigo - Parking Joffre Saint Thiébaut",
+    "adresse": "22 Rue Grand Rabbin Haguenauer",
+    "infos": {
+        "url": "https://fr.parkindigo.com/parking/nancy-54100/joffre-saint-thiebaut-54000900"
+    },
+    "position": {
+        "latitude": 48.6878018,
+        "longitude": 6.1775293
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Gare Nancy",
+    "infos": {
+        "url": "https://www.transdevpark.com/parkings_et_voiries/nancy/thiers"
+    },
+    "position": {
+        "latitude": 48.6904752,
+        "longitude": 6.1722001
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking République - Centre de congrès Prouvé",
+    "adresse": "22 Boulevard Joffre",
+    "infos": {
+        "url": "https://www.transdevpark.com/parkings_et_voiries/nancy/republique_centre_de_congres_prouve"
+    },
+    "position": {
+        "latitude": 48.6873166,
+        "longitude": 6.175296
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Vaudémont",
+    "infos": {
+        "url": "https://www.nancy.fr/tous-nos-annuaires/annuaire-nancy-pratique-922/parking-vaudemont-583.html?cHash=76d0affa4201144ad76d14c3efe27596"
+    },
+    "position": {
+        "latitude": 48.6946459,
+        "longitude": 6.1818886
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Saint-Nicolas",
+    "adresse": "32 Rue des Fabriques",
+    "infos": {
+        "url": "https://www.parkopedia.fr/parking/carpark/parking_saint_nicolas/54000/nancy/?arriving=202003160200&leaving=202003160400"
+    },
+    "position": {
+        "latitude": 48.6946633,
+        "longitude": 6.1753225
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Indigo Nancy Manufacture",
+    "adresse": "74 Quai Claude le Lorrain",
+    "infos": {
+        "url": "https://fr.parkindigo.com/parking/nancy-54000/manufacture-54001100?utm_source=google&utm_medium=my_business&utm_campaign=fiche_my_business&utm_term=540011&utm_content=FR"
+    },
+    "position": {
+        "latitude": 48.6968635,
+        "longitude": 6.1684723
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Saint Léon",
+    "adresse": "bis, 5 Rue Saint-Léon",
+    "infos": {
+        "url": "https://www.transdevpark.com/parkings_et_voiries/nancy/saint_leon"
+    },
+    "position": {
+        "latitude": 48.6894047,
+        "longitude": 6.170958
+    },
+    "categorie": "parking",
+    "__v": 0
+}
+
+{
+    "_id": ObjectID(),
+    "name": "Parking Relais 2 Rives",
+    "adresse": "Prom. Emilie du Châtelet",
+    "infos": {
+        "url": "https://www.transdevpark.com/parkings_et_voiries/nancy/deux_rives"
+    },
+    "position": {
+        "latitude": 48.6806406,
+        "longitude": 6.1874185
+    },
+    "categorie": "parking",
+    "__v": 0
+}
