@@ -1,0 +1,18 @@
+{
+    "_id": ObjectID(),
+    "details": "Le parc de la Pépinière, est un jardin public de Nancy.",
+    "name": "Parc de la Pépinière",
+    "adresse": "30 Boulevard du 26ème R. I.",
+    "infos": {
+        "hours": {
+            "start": "6h30",
+            "end": "20h"
+        },
+        "url": "https://www.nancy-tourisme.fr/a-voir-a-faire/loisirs/parcs-et-jardins/"
+    },
+    "position": {
+        "latitude": 48.6980595,
+        "longitude": 6.1828113
+    },
+    "__v": 0
+}
