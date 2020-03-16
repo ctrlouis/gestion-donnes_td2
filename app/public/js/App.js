@@ -82,24 +82,22 @@ const Mapp = Vue.component('mapp', {
             let popup = `
             <header>${data.name}</header>
             <hr>
-            <main><p>${data.details}</p>`;
+            <main>`;
+
+            if (data.details) {
+                popup += `<p>${data.details}</p>`;
+            }
 
             if (data.adresse) {
-                popup += `
-                <p class="adresse">${data.adresse}</p>
-                `;
+                popup += `<p class="adresse">${data.adresse}</p>`;
             }
 
             if (data.infos.hours.start) {
-                popup += `
-                <p>Horaire: ${data.infos.hours.start} - ${data.infos.hours.end}</p>
-                `;
+                popup += `<p>Horaire: ${data.infos.hours.start} - ${data.infos.hours.end}</p>`;
             }
 
             if (data.infos.url) {
-                popup += `
-                <a href="${data.infos.url}" target="_blank">Lien vers le site</a>
-                `;
+                popup += `<a href="${data.infos.url}" target="_blank">Lien vers le site</a>`;
             }
 
             popup += `</main>`;
