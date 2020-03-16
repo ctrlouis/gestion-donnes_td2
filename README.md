@@ -1,5 +1,7 @@
 # Gestion de données: TD2
 
+Bertschy Louis
+
 Repo Github : https://github.com/ctrlouis/gestion-donnes_td2
 
 ## Utilisation
