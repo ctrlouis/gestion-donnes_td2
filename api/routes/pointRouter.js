@@ -10,8 +10,10 @@ const router = express.Router();
 router.get('/', PointController.fetchAll);
 
 /* GET Fetch one specific element */
-router.get('/:id', PointController.find);
+router.get('/init', PointController.init);
 
+/* GET Fetch one specific element */
+router.get('/:id', PointController.find);
 
 /* POST Create connection message */
 router.post('/', PointController.create);

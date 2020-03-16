@@ -1,6 +1,7 @@
 "use strict";
 
 
+import fs from 'fs';
 import createError from 'http-errors';
 import ConnectionFactory from '../schema/ConnectionFactory.js';
 import { PointSchema, PointModel } from '../schema/PointSchema.js';
@@ -46,6 +47,17 @@ class LocalisationController {
             if (err) res.json(err);
             res.json(newPoint);
         });
+    }
+
+    static init(req, res) {
+        ConnectionFactory.connect();
+
+        let data = JSON.parse(fs.readFileSync('./public/data/points.json'));
+
+        PointModel.collection.drop();
+        PointModel.collection.insert(data);
+
+        res.send(`Database initialised! Go to the <a href="http://localhost/">app</a>`);
     }
 
     // static update(req, res) {
